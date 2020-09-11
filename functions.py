@@ -28,10 +28,14 @@ def add_saving_accounts():
             print("Wrong input please enter the total amount to be created in numbers.")
     my_saving_accounts = dict()
     
-    for i in range(total_saving_accounts):#Insert by user the names of accounts
+    for i in range(total_saving_accounts):#Insert by user: names of accounts
         my_saving_accounts[input("Please enter the name of the saving account number {}: ".format(i+1))] = 0
-    while "" in my_saving_accounts:#Check for empty names and force user to write a name
-        my_saving_accounts[input("Saving account can't be empty, please enter valid name:")] = my_saving_accounts.pop("")
+        while True:
+            if "" in my_saving_accounts:
+                my_saving_accounts[input("Saving account can't be empty, please enter valid name:")] = my_saving_accounts.pop("")
+            else:
+                break
+    
     return my_saving_accounts
         
 def calculate_saving(income:float, accounts:dict, percent:float = 0.10) ->dict:
@@ -99,3 +103,26 @@ print_account_status(income, my_saving_accounts)
 '''a = {"key":"value"}
 a[input("the key: ")] = 0
 print(a)'''
+#---------------palautetta----------------------
+'''Erittäin kattavasti kirjoitettu docstringit ja käytetty runsaasti kommentteja selittämään 
+kukin vaihe. Koodi toimii hyvin.
+
+Koodi on selkeää ja monipuolista. Docstring on luotu hyvin, selkeästi kirjoitettu.
+
+Funktiossa add_saving_accounts: Jos syöttää useamman kuin yhden tyhjän nimen saving accounteille, 
+tämä johtaa bugiin: Ohjelma pyytää vain yhden uuden nimen. Käyttäjältä pitäisi kysyä uutta 
+nimeä heti väärän syötteen jälkeen. Pääfunktion voisi määritellä käyttäen: if __name__ == "__main__":
+
+Hyvin tehty ja selitetty, mutta minusta oikein on amounT (ilman H lopussa)
+
+Hyvät ohjeet ja kommentit. Koodissa turha muuttuja "amount_discounted". Virhesyötteen 
+tarkistuksessa ongelma: jos savings accountin nimi on tyhjä, se tarkistetaan vain viimeisestä nimestä.
+
+Koodiin oli jäänyt testaus 60% säästöprosentilla, mutta muuten todella selkeä koodi 
+ja documentaatiot. Helposti pystyi lukemaan mistä on kyse. 
+
+Palautteena sanoisin että try: Exceptissä voisi käyttää "Except: ValueError" 
+koska tässä näytetään testaavan vain yhden että käyttävä syöttää numeron. 
+
+Tässä kohdassa oli myös hienosti testattu väärän syötön varalle, mutta "income" syöttäessä voi vielä antaa huonon syötteen.
+mielenkiintoista, olen kirjanpitäjä :)'''
