@@ -1,5 +1,5 @@
 """
-This program helps you to calculate the amounth you can save based on a percentage from your income.
+This program helps you to calculate the amount you can save based on a percentage from your income.
 
 User sets the different saving account names (Function: add_saving_accounts)
 
@@ -20,12 +20,12 @@ def add_saving_accounts():
         Retruns:
         return: dict of saving accounts names with empty values in it.
     """
-    while True:#Save the amounth of accounts in a int:
+    while True:#Save the amount of accounts in a int:
         try:
             total_saving_accounts = int(input("How many saving accounts do you whant to create: "))
             break
         except:
-            print("Wrong input please enter the total amounth to be created in numbers.")
+            print("Wrong input please enter the total amount to be created in numbers.")
     my_saving_accounts = dict()
     
     for i in range(total_saving_accounts):#Insert by user the names of accounts
@@ -36,17 +36,17 @@ def add_saving_accounts():
         
 def calculate_saving(income:float, accounts:dict, percent:float = 0.10) ->dict:
     """Function takes calculates how much we can save in the saving accounts. The default 
-    saving percent is 10. We can change the saving amounth percent if we want to save 
-    more in theese accounts. Program returns the dictionary with the amounth saved
+    saving percent is 10. We can change the saving amount percent if we want to save 
+    more in theese accounts. Program returns the dictionary with the amount saved
 
     Args:
-        income (float): Total income amounth. 
+        income (float): Total income amount. 
         accounts (dict): Names and values of the saving accounts
-        percent (float, optional): Percent in decimals to calculate the saving amounth. 
+        percent (float, optional): Percent in decimals to calculate the saving amount. 
             Defaults to 10%->0.10.
 
     Returns:
-        dict: dictionary with the amounth saved
+        dict: dictionary with the amount saved
     """
     accounts_with_savings = dict()
     amount_discounted = 0
