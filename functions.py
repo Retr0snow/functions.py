@@ -24,7 +24,7 @@ def add_saving_accounts():
         try:
             total_saving_accounts = int(input("How many saving accounts do you whant to create: "))
             break
-        except:
+        except ValueError:
             print("Wrong input please enter the total amount to be created in numbers.")
     my_saving_accounts = dict()
     
