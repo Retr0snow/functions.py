@@ -82,21 +82,36 @@ def print_account_status(income:float, my_saving_accounts:dict):
     
     if income - total_saved < 0:
         print(f"{''.center(65,'-')}\n!!!The remaining saldo is negative, try a lower saving percent!!!\n{''.center(65,'-')}")
-        
+
+def total_in_account() ->float:
+    """Get from user total amount to be calculated, check for correct imput and returns it
+
+    Returns:
+        Float: Total amount to calculate the savings
+    """
+    while True:
+        try:
+            total = float(input("Please enter the total income per month: "))
+            if total >= 0:
+                break
+            else:
+                print("The amount must be inserted in positive numbers")
+        except ValueError:
+            print("Wrong input. Enter the total amount in numbers")
+    return total        
 #-----------------------------------------------------------------------------
 #-------------------------------Main code-------------------------------------
 #-----------------------------------------------------------------------------        
 
 
-income = float(input("Please enter the total income per month: "))
 
-
+total = total_in_account()
 my_saving_accounts = add_saving_accounts()
-my_saving_accounts = calculate_saving(income, my_saving_accounts,0.60)
-print_account_status(income, my_saving_accounts)
+my_saving_accounts = calculate_saving(total, my_saving_accounts,0.60)
+print_account_status(total, my_saving_accounts)
 
-my_saving_accounts = calculate_saving(income, my_saving_accounts,)
-print_account_status(income, my_saving_accounts)
+my_saving_accounts = calculate_saving(total, my_saving_accounts,)
+print_account_status(total, my_saving_accounts)
 
 
 
