@@ -23,17 +23,23 @@ def add_saving_accounts():
     while True:#Save the amount of accounts in a int:
         try:
             total_saving_accounts = int(input("How many saving accounts do you whant to create: "))
-            break
+            if total_saving_accounts >= 0:
+                break
+            else:
+                print("The amount of accounts must be inserted in positive numbers")
         except ValueError:
-            print("Wrong input please enter the total amount to be created in numbers.")
+            print("Wrong input please enter the total amount to be created in whole, positive numbers.")
     my_saving_accounts = dict()
     
     for i in range(total_saving_accounts):#Insert by user: names of accounts
-        my_saving_accounts[input("Please enter the name of the saving account number {}: ".format(i+1))] = 0
-        while True:
-            if "" in my_saving_accounts:
-                my_saving_accounts[input("Saving account can't be empty, please enter valid name:")] = my_saving_accounts.pop("")
+        temporal = input("Please enter the name of the saving account number {}: ".format(i+1))
+        while True:#Check either its empty entries or duplicated name before save to dictionary
+            if temporal == "":#Check for empty entry
+                temporal = input("Saving account can't be empty, please enter valid name: ")
+            elif temporal in my_saving_accounts:#Check for duplicated name
+                temporal = input("The name already exist, please enter a different name: ")
             else:
+                my_saving_accounts[temporal] = 0
                 break
     
     return my_saving_accounts
@@ -81,7 +87,10 @@ def print_account_status(income:float, my_saving_accounts:dict):
 #-------------------------------Main code-------------------------------------
 #-----------------------------------------------------------------------------        
 
+
 income = float(input("Please enter the total income per month: "))
+
+
 my_saving_accounts = add_saving_accounts()
 my_saving_accounts = calculate_saving(income, my_saving_accounts,0.60)
 print_account_status(income, my_saving_accounts)
@@ -99,17 +108,21 @@ print_account_status(income, my_saving_accounts)
 
 
 
-#-------------test---------------------
+
+#-------------------test------------------------
 '''a = {"key":"value"}
 a[input("the key: ")] = 0
 print(a)'''
+
+
 #---------------palautetta----------------------
-'''Erittäin kattavasti kirjoitettu docstringit ja käytetty runsaasti kommentteja selittämään 
+
+'''Erittäin kattavasti kirjoitettu docstringit ja käytetty runsaasti kommentteja selittämään
 kukin vaihe. Koodi toimii hyvin.
 
 Koodi on selkeää ja monipuolista. Docstring on luotu hyvin, selkeästi kirjoitettu.
 
-Funktiossa add_saving_accounts: Jos syöttää useamman kuin yhden tyhjän nimen saving accounteille, 
+Funktiossa add_saving_accounts: Jos syöttää useamman kuin yhden tyhjän nimen saving accounteille,
 tämä johtaa bugiin: Ohjelma pyytää vain yhden uuden nimen. Käyttäjältä pitäisi kysyä uutta 
 nimeä heti väärän syötteen jälkeen. Pääfunktion voisi määritellä käyttäen: if __name__ == "__main__":
 
